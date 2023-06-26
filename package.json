@@ -1,0 +1,26 @@
+{
+  "name": "custom-react-burger",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "https://github.com/oktavihos/custom-react-burger.git",
+  "author": "oktavihos",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack serve --mode=development"
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.3",
+    "typescript": "^5.1.3",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

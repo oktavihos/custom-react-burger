@@ -1,11 +1,12 @@
+import React, { useEffect, useState } from "react";
+import { hot } from "react-hot-loader/root";
 import AppHeader from "../app-header";
 import BurgerConstructor from "../burger-constructor";
 import BurgerIngridients from "../burger-ingredients";
-import appStyle from './style.module.sass';
-import burgerCart from '../../utils/cart.json';
+import appStyle from "./style.module.sass";
+import burgerCart from "../../utils/cart.json";
 import useRequest from "../../hooks/use-request";
 import { TBurgerData } from "./types";
-import { useEffect, useState } from "react";
 import LoaderPage from "../loader-page";
 
 const App: React.FC = () => {
@@ -14,7 +15,7 @@ const App: React.FC = () => {
     const [state, setState] = useState<TBurgerData[]>([]);
     const [errors, setErrors] = useState<string[]>([]);
 
-    const getIngredients = useRequest('ingredients');
+    const getIngredients = useRequest("ingredients");
 
     useEffect(() => {
         setLoading(true);
@@ -24,17 +25,21 @@ const App: React.FC = () => {
             setErrors([error.toString()]);
             setLoading(false);
         });
-    }, []); //eslint-disable-line react-hooks/exhaustive-deps
+    }, [getIngredients]);
 
     return(
         <>
             <AppHeader />
             <main className={`${appStyle.main} pl-5 pr-5`}>
-                {isLoading ? <LoaderPage /> : (errors.length > 0 ? <div className="pt-15 text text_type_main-default">
-                    {errors.map(error => {
-                        return <div>{error}</div>
-                    })}
-                </div> :
+                {isLoading && <LoaderPage />}
+                
+                {errors.length > 0 && (
+                    <div className="pt-15 text text_type_main-default">
+                        {errors.map(error => <div>{error}</div>)}
+                    </div>
+                )}
+
+                {!isLoading && errors.length === 0 && (
                     <>
                         <section className={`${appStyle.section} pr-5`}>
                             <BurgerIngridients data={state} />
@@ -49,4 +54,4 @@ const App: React.FC = () => {
     );
 }
 
-export default App;
+export default hot(App);

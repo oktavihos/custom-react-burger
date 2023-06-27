@@ -1,13 +1,14 @@
-declare module '*.svg' {
-    const content: any;
-    export default content;
-}
+declare module "*.png";
+declare module "*.jpg";
+declare module "*.webp";
+declare module "*.jpg";
+declare module "*.jpeg";
+declare module "*.svg";
 
-declare module '*.sass' {
-    const content: {
-        a: string
-        b: string
-        c: string
-    };
-    export default content;
+declare module '*.module.sass' {
+    interface IClassNames {
+      [className: string]: string
+    }
+    const classNames: IClassNames;
+    export = classNames;
 }

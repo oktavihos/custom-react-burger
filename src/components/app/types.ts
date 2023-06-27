@@ -13,10 +13,10 @@ export type TBurgerData = {
     __v: number
 };
 
-export enum BurgerTypes {
-    BUN = 'bun',
-    MAIN = 'main',
-    SAUSES = 'sauce'
+export enum BurgerTypes { //eslint-disable-line
+    BUN = 'bun', //eslint-disable-line
+    MAIN = 'main', //eslint-disable-line
+    SAUSES = 'sauce' //eslint-disable-line
 };
 
 export type TCategoriesData = {

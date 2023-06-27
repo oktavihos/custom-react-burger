@@ -1,11 +1,15 @@
 {
+    "include": ["src/components", "src/index.d.ts"],
     "compilerOptions": {
       "outDir": "./dist/",
       "noImplicitAny": true,
       "module": "es6",
       "target": "es5",
-      "jsx": "react",
+      "jsx": "react-jsx",
       "allowJs": true,
-      "moduleResolution": "node"
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true
     }
-  }
+}

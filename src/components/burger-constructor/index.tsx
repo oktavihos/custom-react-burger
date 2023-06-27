@@ -1,6 +1,6 @@
+import React, { useCallback, useMemo, useState } from "react";
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { TBurgerConstructorProps } from "./types";
-import { useCallback, useMemo, useState } from "react";
 import { BurgerTypes, TBurgerData } from "../app/types";
 import constructorStyle from './style.module.sass';
 import OrderDetails from "../order-details";
@@ -8,17 +8,17 @@ import OrderDetails from "../order-details";
 const BurgerConstructor: React.FC<TBurgerConstructorProps> = ({data = []}) => {
 
     const [bun, other, sum] = useMemo<[TBurgerData | null, TBurgerData[], number]>(() => {
-        let bun: TBurgerData | null = null;
-        let other: TBurgerData[] = [];
-        let sum: number = 0;
+        let calcBun: TBurgerData | null = null;
+        const calcOther: TBurgerData[] = [];
+        let calcSum = 0;
 
         data.forEach(item => {
-            if(item.type === BurgerTypes.BUN) bun = item;
-            else other.push(item);
-            sum += item.price;
+            if(item.type === BurgerTypes.BUN) calcBun = item;
+            else calcOther.push(item);
+            calcSum += item.price;
         });
 
-        return [bun, other, sum];
+        return [calcBun, calcOther, calcSum];
     }, [JSON.stringify(data)]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const [open, setOpen] = useState(false);
@@ -40,8 +40,9 @@ const BurgerConstructor: React.FC<TBurgerConstructorProps> = ({data = []}) => {
                     thumbnail={bun.image_mobile}
                 />}
                 <div className={`${constructorStyle.scrollList} scroll scroll-view`}>
-                    {other.map((item, index) => {
-                        return (
+                    {other.map((item, index) => 
+                        (
+                            // eslint-disable-next-line react/no-array-index-key
                             <div key={index} className={constructorStyle.dragItem}>
                                 <DragIcon type="primary" />
                                 <ConstructorElement
@@ -51,8 +52,8 @@ const BurgerConstructor: React.FC<TBurgerConstructorProps> = ({data = []}) => {
                                     thumbnail={item.image_mobile}
                                 />
                             </div>
-                        );
-                    })}
+                        )
+                    )}
                 </div>
                 {bun && <ConstructorElement
                     extraClass="ml-7"

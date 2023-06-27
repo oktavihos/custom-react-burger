@@ -1,4 +1,4 @@
-import { TBurgerData, TCategoriesItem } from "../app/types";
+import { TBurgerData } from "../app/types";
 
 export type TBurgerIngridientsProps = {
     data?: TBurgerData[]
